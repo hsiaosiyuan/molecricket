@@ -1,5 +1,7 @@
 package auth
 
+// https://www.ietf.org/rfc/rfc2617.txt
+
 type User struct {
 	Name      string
 	Password  string
