@@ -15,32 +15,30 @@ const (
 )
 
 func Serve() {
-	users := []auth.User{
-		auth.User{
-			"u",
-			"p",
-			[]string{"molecricket"},
-		},
+	var (
+		err    error
+		cfg    *Config
+		addr   *net.TCPAddr
+		tl     *net.TCPListener
+		conn   *net.TCPConn
+	)
+
+	if cfg, err = NewConfig(); err != nil {
+		log.Fatal(err)
 	}
 
-	resources := []auth.Resource{
-		auth.Resource{
-			"/",
-			"molecricket",
-		},
-	}
+	auth.SetUsers(cfg.Users)
+	auth.SetResources(cfg.Resources)
 
-	auth.SetUsers(users)
-	auth.SetResources(resources)
-
-	la, _ := net.ResolveTCPAddr("tcp", ":9090")
-	ln, err := net.ListenTCP("tcp", la)
+	addr, _ = net.ResolveTCPAddr("tcp", ":"+cfg.Port)
+	tl, err = net.ListenTCP("tcp", addr)
 
 	if err != nil {
 		log.Println(err)
 	}
+
 	for {
-		conn, err := ln.AcceptTCP()
+		conn, err = tl.AcceptTCP()
 		if err != nil {
 			log.Println(err)
 			continue

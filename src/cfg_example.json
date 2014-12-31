@@ -1,0 +1,16 @@
+{
+    "Port": "9898",
+    "Users": [
+        {
+            "Name": "un",
+            "Password": "pwd",
+            "Realms": ["mc"]
+        }
+    ],
+    "Resources": [
+        {
+            "Path": "/",
+            "Realm": "mc"
+        }
+    ]
+}

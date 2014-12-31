@@ -7,7 +7,6 @@ import (
 	"http/auth"
 	"bytes"
 	"io"
-	"log"
 )
 
 type Tunnel struct {
@@ -81,7 +80,6 @@ func (t *Tunnel) Handle() {
 			t.Close502()
 		}
 
-		log.Println(err)
 		return
 	}
 

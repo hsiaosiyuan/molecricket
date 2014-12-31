@@ -3,9 +3,9 @@ package auth
 // https://www.ietf.org/rfc/rfc2617.txt
 
 type User struct {
-	Name      string
-	Password  string
-	Realms    []string
+	Name      string	`json:"Name"`
+	Password  string	`json:"Password"`
+	Realms    []string	`json:"Realms"`
 }
 
 func (u *User) HasRealm(realm string) bool {
@@ -19,8 +19,8 @@ func (u *User) HasRealm(realm string) bool {
 }
 
 type Resource struct {
-	Path  string
-	Realm string
+	Path  string	`json:"Path"`
+	Realm string	`json:"Realm"`
 }
 
 const (
