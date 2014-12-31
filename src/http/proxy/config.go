@@ -8,7 +8,6 @@ import (
 	"errors"
 	"io/ioutil"
 	"encoding/json"
-	"fmt"
 )
 
 type Config struct {
@@ -50,8 +49,6 @@ func NewConfig() (c *Config, err error) {
 	if err = json.Unmarshal(fc, c); err != nil {
 		return nil, err
 	}
-
-	fmt.Println(c)
 
 	return c, nil
 }
